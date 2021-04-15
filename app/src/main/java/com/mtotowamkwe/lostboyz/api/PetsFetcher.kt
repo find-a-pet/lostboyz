@@ -40,6 +40,13 @@ class PetsFetcher {
                 val petsResponse: PetsResponse? = apiResponse?._embedded
                 val petsLost: List<Pet> = petsResponse?.lostPets ?: mutableListOf()
 
+                /*
+                * TODO: Cache results in local storage or a database
+                *  in case of configuration changes in the app e.g. screen orientation, change
+                *  phone call etc. Cached results can be used instead of making a new request
+                *  every time a configuration change occurs.
+                * */
+
                 responseLiveData.value = petsLost
             }
 
