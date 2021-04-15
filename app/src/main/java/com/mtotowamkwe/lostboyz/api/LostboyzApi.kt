@@ -7,5 +7,5 @@ import retrofit2.http.GET
 interface LostboyzApi {
 
     @GET(Constants.all)
-    fun pets(): Call<String>
+    fun pets(): Call<LostboyzApiResponse>
 }

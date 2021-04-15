@@ -10,14 +10,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.mtotowamkwe.lostboyz.api.LostboyzApi
 import com.mtotowamkwe.lostboyz.api.PetsFetcher
-import com.mtotowamkwe.lostboyz.util.Constants
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.scalars.ScalarsConverterFactory
+import com.mtotowamkwe.lostboyz.model.Pet
 
 private const val TAG = "PetsFragment"
 
@@ -28,12 +22,12 @@ class PetsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val petsLiveData: LiveData<String> = PetsFetcher().fetchPets()
+        val petsLiveData: LiveData<List<Pet>> = PetsFetcher().fetchPets()
 
         petsLiveData.observe(
             this,
-            Observer { responseString ->
-                Log.d(TAG, "Response received: $responseString")
+            Observer { listOfLostPets ->
+                Log.d(TAG, "Response received: $listOfLostPets")
             })
     }
 
