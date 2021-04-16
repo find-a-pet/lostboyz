@@ -5,12 +5,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.mtotowamkwe.lostboyz.model.Pet
 import com.mtotowamkwe.lostboyz.model.PetViewModel
+import de.hdodenhof.circleimageview.CircleImageView
 
 private const val TAG = "PetsFragment"
 
@@ -45,10 +49,36 @@ class PetsFragment : Fragment() {
             viewLifecycleOwner,
             Observer { cutePets ->
                 Log.d(TAG, "Have lost pets from the ViewModel\n $cutePets")
-
-                // TODO: Update the RecyclerView's data
+                petsRecyclerView.adapter = PetAdapter(cutePets)
             }
         )
+    }
+
+    private class PetHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+
+    private inner class PetAdapter(private val allPets: List<Pet>) :
+        RecyclerView.Adapter<PetHolder>() {
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PetHolder {
+            return PetHolder(
+                layoutInflater.inflate(R.layout.pet_list_item, parent, false))
+        }
+
+        override fun onBindViewHolder(holder: PetHolder, position: Int) {
+            val aPet = allPets[position]
+            val petName: TextView = holder.itemView.findViewById(R.id.petName)
+            val petImage: CircleImageView = holder.itemView.findViewById(R.id.petImage)
+
+            holder.itemView.apply {
+                petName.text = aPet.name
+                Glide.with(this).load(aPet.url).into(petImage)
+            }
+
+            holder.itemView
+        }
+
+        override fun getItemCount(): Int = allPets.size
+
     }
 
     companion object {
