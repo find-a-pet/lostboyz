@@ -68,9 +68,11 @@ class PetsFragment : Fragment() {
             val aPet = allPets[position]
             val petName: TextView = holder.itemView.findViewById(R.id.petName)
             val petImage: CircleImageView = holder.itemView.findViewById(R.id.petImage)
+            val petHome: TextView = holder.itemView.findViewById(R.id.petLocation)
 
             holder.itemView.apply {
                 petName.text = aPet.name
+                petHome.text = aPet.location
                 Glide.with(this).load(aPet.url).into(petImage)
             }
 

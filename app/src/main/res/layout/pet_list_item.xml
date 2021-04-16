@@ -22,17 +22,51 @@
             app:civ_border_color="#FF000000"
             app:civ_border_width="1dp"/>
 
-        <TextView
-            android:id="@+id/petName"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:textSize="16sp"
-            android:gravity="center_vertical"
-            android:layout_gravity="center"
-            android:paddingStart="16dp"
-            android:paddingEnd="8dp"
-            tools:text="Chester"/>
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:gravity="center_vertical"
+                android:layout_gravity="center"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:text="@string/pet_name_label"/>
+
+            <TextView
+                android:id="@+id/petName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:gravity="center_vertical"
+                android:layout_gravity="center"
+                tools:text="Chester"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:gravity="center_vertical"
+                android:layout_gravity="center"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:text="@string/pet_location_label"/>
+
+            <TextView
+                android:id="@+id/petLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:gravity="center_vertical"
+                android:layout_gravity="center"
+                tools:text="Langford"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
